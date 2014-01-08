@@ -16,10 +16,10 @@ module MongoMapper
             :path_field      => "path",
             :depth_field     => "depth"
           }.merge(options)
-          
-          write_inheritable_attribute :acts_as_tree_options, options
-          class_inheritable_reader :acts_as_tree_options
-          
+
+          class_attribute :acts_as_tree_options, instance_writer: false
+          self.acts_as_tree_options ||= options
+
           include InstanceMethods
           include Fields
           extend Fields
