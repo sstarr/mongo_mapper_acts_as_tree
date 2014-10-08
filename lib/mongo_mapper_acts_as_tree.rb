@@ -157,6 +157,8 @@ module MongoMapper
         end
         
         def destroy_descendants
+          return if self.descendants.empty?
+
           search_class.destroy(self.descendants.map(&:_id))
         end
       end
